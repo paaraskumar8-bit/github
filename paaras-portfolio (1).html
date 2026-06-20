@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paaras Kumar — Philosophy · Finance · Self-Knowledge</title>
+  <meta name="description" content="Paaras Kumar — 18-year-old philosopher, thinker, and learner. Exploring ideas at the intersection of philosophy, finance, and self-knowledge." />
+  <meta name="keywords" content="Paaras Kumar, philosophy, finance, self-knowledge, portfolio, thinker" />
+  <meta property="og:title" content="Paaras Kumar — Philosophy · Finance · Self-Knowledge" />
+  <meta property="og:description" content="Portfolio of a young philosopher, thinker, and learner." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0A0F1E;
+      --bg2: #0F172A;
+      --bg3: #141D35;
+      --violet: #8B5CF6;
+      --blue: #3B82F6;
+      --amber: #F59E0B;
+      --rose: #F43F5E;
+      --teal: #14B8A6;
+      --text: #E2E8F0;
+      --muted: #94A3B8;
+      --border: rgba(139,92,246,0.18);
+      --glass: rgba(15,23,42,0.72);
+      --glass2: rgba(139,92,246,0.07);
+      --radius: 16px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    /* ── SCROLL PROGRESS ── */
+    #progress-bar {
+      position: fixed; top: 0; left: 0; height: 2px; width: 0%;
+      background: linear-gradient(90deg, var(--violet), var(--blue), var(--amber));
+      z-index: 9999;
+      transition: width 0.1s linear;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 999;
+      padding: 18px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(10,15,30,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: padding 0.3s;
+    }
+    nav.scrolled { padding: 12px 40px; }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.5rem; font-weight: 500;
+      color: var(--text);
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--violet); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--muted);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--violet); }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    #theme-toggle {
+      background: var(--glass2); border: 1px solid var(--border);
+      border-radius: 50%; width: 38px; height: 38px;
+      cursor: pointer; font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); transition: all 0.2s;
+    }
+    #theme-toggle:hover { color: var(--amber); border-color: var(--amber); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--muted); border-radius: 2px; transition: all 0.3s; }
+
+    /* ── CANVAS BG ── */
+    #hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative; min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; padding: 120px 24px 80px;
+      overflow: hidden;
+    }
+    .hero-eyebrow {
+      font-family: var(--font-mono); font-size: 0.78rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--violet); margin-bottom: 20px;
+      opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+    }
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(3.2rem, 9vw, 7.5rem);
+      font-weight: 300; line-height: 1.05;
+      letter-spacing: -0.01em;
+      background: linear-gradient(135deg, #E2E8F0 0%, var(--violet) 50%, var(--blue) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      opacity: 0; animation: fadeUp 0.9s 0.4s forwards;
+    }
+    .hero-tagline {
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      font-style: italic; color: var(--amber); margin: 16px 0 28px;
+      letter-spacing: 0.06em;
+      opacity: 0; animation: fadeUp 0.9s 0.6s forwards;
+    }
+    .hero-tagline span { margin: 0 12px; opacity: 0.5; }
+    .hero-bio {
+      max-width: 560px; font-size: 1.05rem; color: var(--muted);
+      line-height: 1.8; margin-bottom: 40px;
+      opacity: 0; animation: fadeUp 0.9s 0.8s forwards;
+    }
+    .typing-text { color: var(--violet); font-style: italic; }
+    .cursor { display: inline-block; width: 2px; height: 1em; background: var(--violet); margin-left: 2px; vertical-align: middle; animation: blink 1s infinite; }
+    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+    .hero-cta {
+      display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+      opacity: 0; animation: fadeUp 0.9s 1s forwards;
+    }
+    .btn-primary {
+      padding: 14px 32px; border-radius: 50px;
+      background: linear-gradient(135deg, var(--violet), var(--blue));
+      color: #fff; font-size: 0.9rem; font-weight: 500;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 24px rgba(139,92,246,0.35);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 36px rgba(139,92,246,0.55); }
+    .btn-outline {
+      padding: 14px 32px; border-radius: 50px;
+      border: 1px solid var(--border); color: var(--text);
+      font-size: 0.9rem; font-weight: 500;
+      text-decoration: none; transition: all 0.2s;
+      background: rgba(139,92,246,0.06);
+    }
+    .btn-outline:hover { border-color: var(--violet); color: var(--violet); background: rgba(139,92,246,0.12); }
+    .hero-scroll {
+      position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      color: var(--muted); font-size: 0.75rem; letter-spacing: 0.12em;
+      text-transform: uppercase; opacity: 0;
+      animation: fadeUp 1s 1.4s forwards;
+    }
+    .scroll-arrow { width: 20px; height: 20px; border-right: 2px solid var(--violet); border-bottom: 2px solid var(--violet); transform: rotate(45deg); animation: bounceArrow 1.5s infinite; }
+    @keyframes bounceArrow { 0%,100% { transform: rotate(45deg) translateY(0); } 50% { transform: rotate(45deg) translateY(6px); } }
+
+    /* ── SECTION BASE ── */
+    section { padding: 96px 24px; position: relative; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-family: var(--font-mono); font-size: 0.75rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--violet); margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 400; line-height: 1.15;
+      color: var(--text); margin-bottom: 48px;
+    }
+    .section-title em { color: var(--violet); font-style: italic; }
+    .divider {
+      width: 60px; height: 2px; margin-bottom: 48px;
+      background: linear-gradient(90deg, var(--violet), var(--blue));
+      border-radius: 2px;
+    }
+
+    /* ── GLASS CARD ── */
+    .glass-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(20px);
+      padding: 28px 32px;
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    }
+    .glass-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(139,92,246,0.4);
+      box-shadow: 0 16px 48px rgba(139,92,246,0.15);
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--bg2); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+    .about-text p { color: var(--muted); margin-bottom: 16px; font-size: 1rem; line-height: 1.85; }
+    .about-text p strong { color: var(--text); }
+    .about-stats { display: flex; gap: 28px; margin-top: 32px; flex-wrap: wrap; }
+    .stat { text-align: center; }
+    .stat-num { font-family: var(--font-display); font-size: 2.4rem; font-weight: 300; color: var(--violet); }
+    .stat-label { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+    .about-visual {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .about-card {
+      background: var(--glass2);
+      border: 1px solid var(--border);
+      border-radius: 14px; padding: 24px 20px;
+      text-align: center; transition: all 0.3s;
+    }
+    .about-card:hover { border-color: var(--violet); background: rgba(139,92,246,0.1); transform: scale(1.03); }
+    .about-card .icon { font-size: 2rem; margin-bottom: 10px; }
+    .about-card p { font-size: 0.82rem; color: var(--muted); }
+    .about-card h4 { font-size: 0.95rem; color: var(--text); margin-bottom: 4px; }
+
+    /* ── EDUCATION ── */
+    #education { background: var(--bg); }
+    .edu-card {
+      display: flex; align-items: flex-start; gap: 24px;
+      padding: 32px; border-radius: var(--radius);
+      background: var(--glass); border: 1px solid var(--border);
+      backdrop-filter: blur(20px); max-width: 700px;
+      transition: all 0.3s;
+    }
+    .edu-card:hover { border-color: rgba(139,92,246,0.45); box-shadow: 0 12px 40px rgba(139,92,246,0.12); }
+    .edu-icon {
+      width: 56px; height: 56px; border-radius: 14px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--violet), var(--blue));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+    }
+    .edu-body h3 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 500; color: var(--text); }
+    .edu-body .edu-meta { font-family: var(--font-mono); font-size: 0.78rem; color: var(--violet); letter-spacing: 0.1em; margin: 6px 0 10px; }
+    .edu-body p { font-size: 0.9rem; color: var(--muted); }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--bg2); }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+    .skill-card {
+      padding: 26px 24px;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(16px);
+      transition: all 0.3s; cursor: default;
+      position: relative; overflow: hidden;
+    }
+    .skill-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, var(--violet), var(--blue));
+      opacity: 0; transition: opacity 0.3s; border-radius: var(--radius);
+    }
+    .skill-card:hover::before { opacity: 0.08; }
+    .skill-card:hover { border-color: rgba(139,92,246,0.45); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(139,92,246,0.12); }
+    .skill-icon { font-size: 1.8rem; margin-bottom: 12px; position: relative; }
+    .skill-card h4 { font-size: 0.95rem; font-weight: 500; color: var(--text); margin-bottom: 6px; position: relative; }
+    .skill-card p { font-size: 0.82rem; color: var(--muted); position: relative; }
+    .skill-bar-wrap { margin-top: 14px; height: 3px; background: rgba(139,92,246,0.15); border-radius: 2px; overflow: hidden; position: relative; }
+    .skill-bar { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--violet), var(--blue)); width: 0; transition: width 1.2s cubic-bezier(.4,0,.2,1); }
+
+    /* ── INTERESTS ── */
+    #interests { background: var(--bg); }
+    .interests-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 24px; }
+    .interest-card {
+      padding: 32px 28px; border-radius: var(--radius);
+      background: var(--glass); border: 1px solid var(--border);
+      backdrop-filter: blur(16px); text-align: center;
+      transition: all 0.35s;
+    }
+    .interest-card:hover { transform: translateY(-6px); }
+    .interest-card.violet:hover { border-color: var(--violet); box-shadow: 0 20px 48px rgba(139,92,246,0.18); }
+    .interest-card.blue:hover { border-color: var(--blue); box-shadow: 0 20px 48px rgba(59,130,246,0.18); }
+    .interest-card.amber:hover { border-color: var(--amber); box-shadow: 0 20px 48px rgba(245,158,11,0.18); }
+    .interest-card.teal:hover { border-color: var(--teal); box-shadow: 0 20px 48px rgba(20,184,166,0.18); }
+    .interest-orb {
+      width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 18px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.8rem;
+    }
+    .interest-card.violet .interest-orb { background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); }
+    .interest-card.blue .interest-orb { background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3); }
+    .interest-card.amber .interest-orb { background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.3); }
+    .interest-card.teal .interest-orb { background: rgba(20,184,166,0.15); border: 1px solid rgba(20,184,166,0.3); }
+    .interest-card h3 { font-family: var(--font-display); font-size: 1.35rem; font-weight: 500; color: var(--text); margin-bottom: 8px; }
+    .interest-card p { font-size: 0.87rem; color: var(--muted); line-height: 1.7; }
+
+    /* ── HOBBIES ── */
+    #hobbies { background: var(--bg2); }
+    .hobbies-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+    .hobby-card {
+      padding: 28px 24px; border-radius: var(--radius);
+      background: var(--glass); border: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+      display: flex; align-items: flex-start; gap: 16px;
+      transition: all 0.3s;
+    }
+    .hobby-card:hover { border-color: rgba(139,92,246,0.4); transform: translateX(4px); }
+    .hobby-icon-wrap {
+      width: 48px; height: 48px; border-radius: 12px; flex-shrink: 0;
+      background: var(--glass2); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
+    }
+    .hobby-card h4 { font-size: 1rem; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+    .hobby-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── PHILOSOPHY CORNER ── */
+    #philosophy { background: var(--bg); position: relative; overflow: hidden; }
+    #philosophy::before {
+      content: '"'; position: absolute; top: -40px; left: -10px;
+      font-family: var(--font-display); font-size: 28rem; font-weight: 300;
+      color: rgba(139,92,246,0.04); line-height: 1; pointer-events: none;
+    }
+    .quotes-carousel { position: relative; overflow: hidden; }
+    .quotes-track { display: flex; transition: transform 0.6s cubic-bezier(.4,0,.2,1); }
+    .quote-slide {
+      min-width: 100%; padding: 0 12px;
+    }
+    .quote-box {
+      background: var(--glass); border: 1px solid var(--border);
+      border-radius: 20px; padding: 52px 56px;
+      backdrop-filter: blur(20px);
+      position: relative; text-align: center;
+    }
+    .quote-box::before {
+      content: '"'; position: absolute; top: 24px; left: 36px;
+      font-family: var(--font-display); font-size: 5rem;
+      color: var(--violet); opacity: 0.4; line-height: 1;
+    }
+    .quote-text {
+      font-family: var(--font-display); font-size: clamp(1.25rem, 2.5vw, 1.85rem);
+      font-weight: 300; font-style: italic;
+      color: var(--text); line-height: 1.6; margin-bottom: 28px;
+    }
+    .quote-author { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--violet); }
+    .quote-nav { display: flex; justify-content: center; gap: 12px; margin-top: 32px; align-items: center; }
+    .quote-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); cursor: pointer; transition: all 0.2s; border: none; }
+    .quote-dot.active { background: var(--violet); transform: scale(1.3); }
+    .quote-arrow {
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 1px solid var(--border); background: var(--glass2);
+      color: var(--muted); cursor: pointer; font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .quote-arrow:hover { border-color: var(--violet); color: var(--violet); }
+    .philo-tags { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 40px; justify-content: center; }
+    .philo-tag {
+      padding: 8px 20px; border-radius: 50px;
+      border: 1px solid var(--border); font-size: 0.82rem;
+      color: var(--muted); background: var(--glass2);
+      font-family: var(--font-display); font-style: italic;
+      transition: all 0.2s; cursor: default;
+    }
+    .philo-tag:hover { border-color: var(--violet); color: var(--violet); background: rgba(139,92,246,0.1); }
+
+    /* ── ACHIEVEMENTS ── */
+    #achievements { background: var(--bg2); }
+    .achievements-list { display: flex; flex-direction: column; gap: 20px; }
+    .achievement-item {
+      display: flex; align-items: flex-start; gap: 20px;
+      padding: 24px 28px; border-radius: var(--radius);
+      background: var(--glass); border: 1px solid var(--border);
+      backdrop-filter: blur(16px); transition: all 0.3s;
+    }
+    .achievement-item:hover { border-color: rgba(245,158,11,0.35); transform: translateX(6px); box-shadow: 0 8px 32px rgba(245,158,11,0.08); }
+    .achievement-num {
+      font-family: var(--font-display); font-size: 2rem; font-weight: 300;
+      color: var(--amber); opacity: 0.6; flex-shrink: 0; line-height: 1;
+    }
+    .achievement-body h4 { font-size: 1rem; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+    .achievement-body p { font-size: 0.87rem; color: var(--muted); line-height: 1.65; }
+
+    /* ── LANGUAGES ── */
+    #languages { background: var(--bg); }
+    .lang-grid { display: flex; gap: 20px; flex-wrap: wrap; }
+    .lang-card {
+      padding: 28px 36px; border-radius: var(--radius);
+      background: var(--glass); border: 1px solid var(--border);
+      backdrop-filter: blur(16px); text-align: center;
+      min-width: 160px; flex: 1;
+      transition: all 0.3s;
+    }
+    .lang-card:hover { border-color: rgba(139,92,246,0.4); transform: translateY(-4px); }
+    .lang-flag { font-size: 2.4rem; margin-bottom: 10px; }
+    .lang-name { font-family: var(--font-display); font-size: 1.3rem; font-weight: 500; color: var(--text); }
+    .lang-level { font-family: var(--font-mono); font-size: 0.72rem; color: var(--violet); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 4px; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--bg2); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+    .contact-info h3 { font-family: var(--font-display); font-size: 1.7rem; font-weight: 400; color: var(--text); margin-bottom: 16px; }
+    .contact-info p { color: var(--muted); font-size: 0.97rem; line-height: 1.8; margin-bottom: 32px; }
+    .contact-links { display: flex; flex-direction: column; gap: 14px; }
+    .contact-link {
+      display: flex; align-items: center; gap: 14px; padding: 16px 20px;
+      border-radius: 12px; border: 1px solid var(--border);
+      background: var(--glass2); text-decoration: none;
+      color: var(--text); transition: all 0.25s;
+    }
+    .contact-link:hover { border-color: var(--violet); color: var(--violet); transform: translateX(4px); }
+    .contact-link .link-icon { width: 38px; height: 38px; border-radius: 10px; background: var(--glass); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+    .contact-link span { font-size: 0.9rem; font-weight: 500; }
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .form-group input, .form-group textarea {
+      background: var(--glass); border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px 16px;
+      color: var(--text); font-family: var(--font-body); font-size: 0.95rem;
+      transition: border-color 0.2s; outline: none; resize: none;
+    }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--violet); }
+    .form-group textarea { min-height: 120px; }
+    .form-submit {
+      padding: 14px 32px; border-radius: 50px;
+      background: linear-gradient(135deg, var(--violet), var(--blue));
+      color: #fff; font-size: 0.9rem; font-weight: 500;
+      border: none; cursor: pointer; transition: all 0.2s;
+      box-shadow: 0 0 24px rgba(139,92,246,0.3);
+      align-self: flex-start;
+    }
+    .form-submit:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(139,92,246,0.5); }
+    #form-msg { font-size: 0.87rem; margin-top: 4px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg); border-top: 1px solid var(--border);
+      padding: 48px 40px 32px; text-align: center;
+    }
+    .footer-logo { font-family: var(--font-display); font-size: 2rem; font-weight: 300; color: var(--text); margin-bottom: 8px; }
+    .footer-logo span { color: var(--violet); }
+    .footer-tagline { font-style: italic; color: var(--muted); font-family: var(--font-display); font-size: 1rem; margin-bottom: 28px; }
+    .footer-links { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--violet); }
+    .footer-copy { color: var(--muted); font-size: 0.8rem; opacity: 0.6; }
+
+    /* ── FADE IN ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── LIGHT MODE ── */
+    body.light {
+      --bg: #F8F7F4;
+      --bg2: #F0EEE9;
+      --bg3: #E8E5DF;
+      --text: #1A1A2E;
+      --muted: #64748B;
+      --border: rgba(139,92,246,0.2);
+      --glass: rgba(248,247,244,0.85);
+      --glass2: rgba(139,92,246,0.07);
+    }
+    body.light nav { background: rgba(248,247,244,0.92); }
+    body.light .form-group input, body.light .form-group textarea { background: rgba(255,255,255,0.9); color: #1A1A2E; }
+    body.light #philosophy::before { color: rgba(139,92,246,0.06); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .nav-links { display: none; }
+      nav { padding: 16px 24px; }
+      .hamburger { display: flex; }
+      .mobile-menu {
+        display: none; flex-direction: column; gap: 0;
+        position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(10,15,30,0.97); z-index: 998;
+        justify-content: center; align-items: center;
+      }
+      .mobile-menu.open { display: flex; }
+      .mobile-menu a { font-size: 1.8rem; font-family: var(--font-display); color: var(--text); text-decoration: none; padding: 16px; letter-spacing: 0.04em; transition: color 0.2s; }
+      .mobile-menu a:hover { color: var(--violet); }
+      .close-menu { position: absolute; top: 24px; right: 28px; background: none; border: none; color: var(--muted); font-size: 1.6rem; cursor: pointer; }
+    }
+    @media (max-width: 600px) {
+      .about-visual { grid-template-columns: 1fr 1fr; }
+      .quote-box { padding: 36px 28px; }
+      section { padding: 72px 20px; }
+      nav { padding: 14px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div id="progress-bar"></div>
+
+  <!-- Navbar -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">P<span>.</span>Kumar</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#philosophy">Philosophy</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true">
+    <button class="close-menu" id="close-menu" aria-label="Close menu">✕</button>
+    <a href="#about" class="mobile-link">About</a>
+    <a href="#education" class="mobile-link">Education</a>
+    <a href="#skills" class="mobile-link">Skills</a>
+    <a href="#interests" class="mobile-link">Interests</a>
+    <a href="#philosophy" class="mobile-link">Philosophy</a>
+    <a href="#achievements" class="mobile-link">Achievements</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+  </div>
+
+  <!-- HERO -->
+  <section id="hero">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-eyebrow">18 · Commerce · India · 2026</div>
+    <h1 class="hero-name">Paaras Kumar</h1>
+    <div class="hero-tagline">Philosophy <span>·</span> Finance <span>·</span> Self-Knowledge</div>
+    <p class="hero-bio">
+      A young mind navigating the intersection of ancient wisdom and modern thought.<br />
+      Currently exploring: <span class="typing-text" id="typing-el"></span><span class="cursor"></span>
+    </p>
+    <div class="hero-cta">
+      <a href="#about" class="btn-primary">Explore My World</a>
+      <a href="#contact" class="btn-outline">Let's Connect</a>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <div class="section-label">Who I Am</div>
+          <h2 class="section-title">Curiosity as a <em>way of life</em></h2>
+          <p>I'm Paaras Kumar — eighteen years old, freshly graduated from Higher Secondary with a Commerce stream, and genuinely obsessed with understanding <strong>why things are the way they are</strong>.</p>
+          <p>Philosophy isn't just something I study; it's the lens through which I see everything — from a chess game to a balance sheet. I believe that <strong>rigorous thinking and self-knowledge</strong> are the foundations of any meaningful endeavor.</p>
+          <p>My days are shaped by books, journaling, and the quiet discipline of reflection. I'm building something slowly, deliberately — a mind that can think clearly, feel deeply, and act wisely.</p>
+          <div class="about-stats">
+            <div class="stat"><div class="stat-num">3+</div><div class="stat-label">Years Reading</div></div>
+            <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Questions Asked</div></div>
+            <div class="stat"><div class="stat-num">18</div><div class="stat-label">Years Young</div></div>
+          </div>
+        </div>
+        <div class="about-visual reveal">
+          <div class="about-card">
+            <div class="icon">♟️</div>
+            <h4>Strategic Thinker</h4>
+            <p>Chess teaches patience and foresight</p>
+          </div>
+          <div class="about-card">
+            <div class="icon">📚</div>
+            <h4>Avid Reader</h4>
+            <p>Philosophy & classical literature</p>
+          </div>
+          <div class="about-card">
+            <div class="icon">✍️</div>
+            <h4>Journaler</h4>
+            <p>Daily reflective writing practice</p>
+          </div>
+          <div class="about-card">
+            <div class="icon">🧠</div>
+            <h4>Self-Learner</h4>
+            <p>Driven by intrinsic motivation</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="container">
+      <div class="section-label reveal">Academic Background</div>
+      <h2 class="section-title reveal">Education & <em>Formation</em></h2>
+      <div class="divider reveal"></div>
+      <div class="edu-card reveal">
+        <div class="edu-icon">🎓</div>
+        <div class="edu-body">
+          <h3>Class XII — Commerce Stream</h3>
+          <div class="edu-meta">Higher Secondary Education · 2026</div>
+          <p>Completed higher secondary education with a focus on Commerce, developing foundational knowledge in business, economics, and financial literacy. Supplemented formal studies with independent philosophical inquiry and analytical reading.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-label reveal">What I Bring</div>
+      <h2 class="section-title reveal">Skills & <em>Capacities</em></h2>
+      <div class="divider reveal"></div>
+      <div class="skills-grid">
+        <div class="skill-card reveal" data-skill="88">
+          <div class="skill-icon">🔍</div>
+          <h4>Critical Thinking</h4>
+          <p>Examining assumptions, questioning first principles, building rigorous arguments</p>
+          <div class="skill-bar-wrap"><div class="skill-bar"></div></div>
+        </div>
+        <div class="skill-card reveal" data-skill="82">
+          <div class="skill-icon">✍️</div>
+          <h4>Written Communication</h4>
+          <p>Crafting ideas with clarity, nuance, and intentional structure</p>
+          <div class="skill-bar-wrap"><div class="skill-bar"></div></div>
+        </div>
+        <div class="skill-card reveal" data-skill="85">
+          <div class="skill-icon">⏳</div>
+          <h4>Time Management</h4>
+          <p>Building disciplined routines that support deep work and reflection</p>
+          <div class="skill-bar-wrap"><div class="skill-bar"></div></div>
+        </div>
+        <div class="skill-card reveal" data-skill="80">
+          <div class="skill-icon">🧩</div>
+          <h4>Problem Solving</h4>
+          <p>Approaching challenges with structured thinking and creative flexibility</p>
+          <div class="skill-bar-wrap"><div class="skill-bar"></div></div>
+        </div>
+        <div class="skill-card reveal" data-skill="90">
+          <div class="skill-icon">📖</div>
+          <h4>Self-Learning & Research</h4>
+          <p>Mastering new domains independently through focused, deliberate study</p>
+          <div class="skill-bar-wrap"><div class="skill-bar"></div></div>
+        </div>
+        <div class="skill-card reveal" data-skill="75">
+          <div class="skill-icon">📊</div>
+          <h4>Financial & Business Knowledge</h4>
+          <p>Foundational understanding of commerce, markets, and economic logic</p>
+          <div class="skill-bar-wrap"><div class="skill-bar"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERESTS -->
+  <section id="interests">
+    <div class="container">
+      <div class="section-label reveal">What Draws Me</div>
+      <h2 class="section-title reveal">Domains of <em>Fascination</em></h2>
+      <div class="divider reveal"></div>
+      <div class="interests-grid">
+        <div class="interest-card violet reveal">
+          <div class="interest-orb">🏛️</div>
+          <h3>Philosophy & Intellectual History</h3>
+          <p>From Socrates to Nietzsche, from Vedanta to Stoicism — the great questions of existence, ethics, and the nature of mind.</p>
+        </div>
+        <div class="interest-card blue reveal">
+          <div class="interest-orb">📈</div>
+          <h3>Business & Finance</h3>
+          <p>The logic of value creation, market dynamics, entrepreneurial thinking, and the intersection of money and meaning.</p>
+        </div>
+        <div class="interest-card amber reveal">
+          <div class="interest-orb">✨</div>
+          <h3>Spirituality & Consciousness</h3>
+          <p>Exploring the inner landscape — consciousness, awareness, and the ancient traditions that map the territory of the self.</p>
+        </div>
+        <div class="interest-card teal reveal">
+          <div class="interest-orb">🌱</div>
+          <h3>Personal Development</h3>
+          <p>The deliberate cultivation of character, habits, and capacities — becoming who one chooses to become.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOBBIES -->
+  <section id="hobbies">
+    <div class="container">
+      <div class="section-label reveal">Daily Practices</div>
+      <h2 class="section-title reveal">Hobbies & <em>Rituals</em></h2>
+      <div class="divider reveal"></div>
+      <div class="hobbies-grid">
+        <div class="hobby-card reveal">
+          <div class="hobby-icon-wrap">📚</div>
+          <div>
+            <h4>Reading Philosophy</h4>
+            <p>Immersing in philosophical texts — not for credentials, but for genuine transformation of thought.</p>
+          </div>
+        </div>
+        <div class="hobby-card reveal">
+          <div class="hobby-icon-wrap">📓</div>
+          <div>
+            <h4>Journaling</h4>
+            <p>A daily practice of reflective writing — examining experiences, testing ideas, and tracking growth.</p>
+          </div>
+        </div>
+        <div class="hobby-card reveal">
+          <div class="hobby-icon-wrap">♟️</div>
+          <div>
+            <h4>Chess</h4>
+            <p>Strategy, patience, and the art of thinking several moves ahead. A meditation in disguise.</p>
+          </div>
+        </div>
+        <div class="hobby-card reveal">
+          <div class="hobby-icon-wrap">🏏</div>
+          <div>
+            <h4>Cricket</h4>
+            <p>The sport of temperament and timing — where mental discipline is as vital as physical skill.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY CORNER -->
+  <section id="philosophy">
+    <div class="container">
+      <div class="section-label reveal">Wisdom Corner</div>
+      <h2 class="section-title reveal">The <em>Philosophy</em> Corner</h2>
+      <div class="divider reveal"></div>
+      <div class="quotes-carousel reveal" id="quotes-carousel">
+        <div class="quotes-track" id="quotes-track">
+          <div class="quote-slide">
+            <div class="quote-box">
+              <p class="quote-text">The unexamined life is not worth living.</p>
+              <div class="quote-author">— Socrates</div>
+            </div>
+          </div>
+          <div class="quote-slide">
+            <div class="quote-box">
+              <p class="quote-text">He who has a why to live can bear almost any how.</p>
+              <div class="quote-author">— Friedrich Nietzsche</div>
+            </div>
+          </div>
+          <div class="quote-slide">
+            <div class="quote-box">
+              <p class="quote-text">Knowing yourself is the beginning of all wisdom.</p>
+              <div class="quote-author">— Aristotle</div>
+            </div>
+          </div>
+          <div class="quote-slide">
+            <div class="quote-box">
+              <p class="quote-text">Man is not worried by real problems so much as by his imagined anxieties about real problems.</p>
+              <div class="quote-author">— Epictetus</div>
+            </div>
+          </div>
+          <div class="quote-slide">
+            <div class="quote-box">
+              <p class="quote-text">The measure of intelligence is the ability to change.</p>
+              <div class="quote-author">— Albert Einstein</div>
+            </div>
+          </div>
+          <div class="quote-slide">
+            <div class="quote-box">
+              <p class="quote-text">Tat tvam asi — Thou art that.</p>
+              <div class="quote-author">— Chandogya Upanishad</div>
+            </div>
+          </div>
+        </div>
+        <div class="quote-nav" id="quote-nav">
+          <button class="quote-arrow" id="q-prev" aria-label="Previous quote">‹</button>
+          <button class="quote-dot active" data-idx="0" aria-label="Quote 1"></button>
+          <button class="quote-dot" data-idx="1" aria-label="Quote 2"></button>
+          <button class="quote-dot" data-idx="2" aria-label="Quote 3"></button>
+          <button class="quote-dot" data-idx="3" aria-label="Quote 4"></button>
+          <button class="quote-dot" data-idx="4" aria-label="Quote 5"></button>
+          <button class="quote-dot" data-idx="5" aria-label="Quote 6"></button>
+          <button class="quote-arrow" id="q-next" aria-label="Next quote">›</button>
+        </div>
+      </div>
+      <div class="philo-tags reveal">
+        <span class="philo-tag">Stoicism</span>
+        <span class="philo-tag">Vedanta</span>
+        <span class="philo-tag">Existentialism</span>
+        <span class="philo-tag">Socratic Method</span>
+        <span class="philo-tag">Epistemology</span>
+        <span class="philo-tag">Ethics</span>
+        <span class="philo-tag">Consciousness</span>
+        <span class="philo-tag">Metaphysics</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements">
+    <div class="container">
+      <div class="section-label reveal">Milestones</div>
+      <h2 class="section-title reveal">Achievements & <em>Growth</em></h2>
+      <div class="divider reveal"></div>
+      <div class="achievements-list">
+        <div class="achievement-item reveal">
+          <div class="achievement-num">01</div>
+          <div class="achievement-body">
+            <h4>Consistent Philosophy Reading Practice</h4>
+            <p>Developed a sustained habit of reading philosophical and classical literature — building genuine intellectual depth rather than surface-level familiarity with ideas.</p>
+          </div>
+        </div>
+        <div class="achievement-item reveal">
+          <div class="achievement-num">02</div>
+          <div class="achievement-body">
+            <h4>Active Journaling & Reflective Practice</h4>
+            <p>Maintained a daily journaling practice focused on self-reflection, idea development, and tracking personal growth — a discipline most adults never develop.</p>
+          </div>
+        </div>
+        <div class="achievement-item reveal">
+          <div class="achievement-num">03</div>
+          <div class="achievement-body">
+            <h4>Strategic Chess Player</h4>
+            <p>Developed genuine proficiency in chess as a discipline of strategic thinking, patience, and decision-making under uncertainty — skills that transfer far beyond the board.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LANGUAGES -->
+  <section id="languages">
+    <div class="container">
+      <div class="section-label reveal">Communication</div>
+      <h2 class="section-title reveal">Languages <em>Spoken</em></h2>
+      <div class="divider reveal"></div>
+      <div class="lang-grid">
+        <div class="lang-card reveal">
+          <div class="lang-flag">🇬🇧</div>
+          <div class="lang-name">English</div>
+          <div class="lang-level">Proficient</div>
+        </div>
+        <div class="lang-card reveal">
+          <div class="lang-flag">🇮🇳</div>
+          <div class="lang-name">Hindi</div>
+          <div class="lang-level">Native</div>
+        </div>
+        <div class="lang-card reveal">
+          <div class="lang-flag">🏵️</div>
+          <div class="lang-name">Punjabi</div>
+          <div class="lang-level">Native</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-label reveal">Get In Touch</div>
+      <h2 class="section-title reveal">Start a <em>Conversation</em></h2>
+      <div class="divider reveal"></div>
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <h3>Let's think together.</h3>
+          <p>Whether you want to discuss philosophy, explore ideas, collaborate on something meaningful, or just exchange thoughts — I'm genuinely open to conversations that matter.</p>
+          <div class="contact-links">
+            <a href="mailto:paaras@example.com" class="contact-link">
+              <span class="link-icon">✉️</span>
+              <span>paaras@example.com</span>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener" class="contact-link">
+              <span class="link-icon">💼</span>
+              <span>LinkedIn Profile</span>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener" class="contact-link">
+              <span class="link-icon">🐦</span>
+              <span>@paaraskumar</span>
+            </a>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="contact-form">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" placeholder="What shall I call you?" />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="your@email.com" />
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" placeholder="What's on your mind?"></textarea>
+            </div>
+            <div id="form-msg"></div>
+            <button class="form-submit" id="form-submit">Send Message →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Paaras<span> Kumar</span></div>
+    <div class="footer-tagline">"Philosophy · Finance · Self-Knowledge"</div>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#interests">Interests</a>
+      <a href="#philosophy">Philosophy</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-copy">© 2026 Paaras Kumar · Built with curiosity and intention</div>
+  </footer>
+
+  <script>
+  /* ── SCROLL PROGRESS ── */
+  const progressBar = document.getElementById('progress-bar');
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.body.scrollHeight - window.innerHeight;
+    progressBar.style.width = (scrollTop / docHeight * 100) + '%';
+  });
+
+  /* ── NAVBAR SCROLL ── */
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  /* ── MOBILE MENU ── */
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.add('open');
+  });
+  document.getElementById('close-menu').addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.remove('open');
+  });
+  document.querySelectorAll('.mobile-link').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('mobile-menu').classList.remove('open'));
+  });
+
+  /* ── THEME TOGGLE ── */
+  const themeBtn = document.getElementById('theme-toggle');
+  let isDark = true;
+  themeBtn.addEventListener('click', () => {
+    isDark = !isDark;
+    document.body.classList.toggle('light', !isDark);
+    themeBtn.textContent = isDark ? '🌙' : '☀️';
+  });
+
+  /* ── HERO CANVAS (floating orbs + chess symbols) ── */
+  const canvas = document.getElementById('hero-canvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [], chessSymbols = [];
+  const CHESS = ['♟','♞','♝','♜','♛','♚','♙','♘','♗','♖','♕','♔'];
+
+  function resize() {
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  for (let i = 0; i < 50; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 2 + 0.5,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      alpha: Math.random() * 0.5 + 0.1,
+    });
+  }
+  for (let i = 0; i < 12; i++) {
+    chessSymbols.push({
+      symbol: CHESS[i % CHESS.length],
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 20 + 10,
+      speed: Math.random() * 0.15 + 0.05,
+      alpha: Math.random() * 0.12 + 0.03,
+      drift: Math.random() * 0.3 - 0.15,
+    });
+  }
+
+  function drawCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Draw gradient overlay
+    const grad = ctx.createRadialGradient(canvas.width/2, canvas.height/2, 0, canvas.width/2, canvas.height/2, canvas.width*0.75);
+    grad.addColorStop(0, 'rgba(139,92,246,0.06)');
+    grad.addColorStop(1, 'rgba(10,15,30,0)');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Particles
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(139,92,246,${p.alpha})`;
+      ctx.fill();
+    });
+
+    // Connect nearby particles
+    particles.forEach((a, i) => {
+      particles.slice(i+1).forEach(b => {
+        const dx = a.x - b.x, dy = a.y - b.y, dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < 100) {
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = `rgba(139,92,246,${0.06 * (1 - dist/100)})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      });
+    });
+
+    // Chess symbols floating
+    chessSymbols.forEach(s => {
+      s.y -= s.speed; s.x += s.drift;
+      if (s.y < -40) { s.y = canvas.height + 40; s.x = Math.random() * canvas.width; }
+      if (s.x < -40 || s.x > canvas.width + 40) s.drift *= -1;
+      ctx.font = `${s.size}px serif`;
+      ctx.fillStyle = `rgba(139,92,246,${s.alpha})`;
+      ctx.fillText(s.symbol, s.x, s.y);
+    });
+
+    requestAnimationFrame(drawCanvas);
+  }
+  drawCanvas();
+
+  /* ── TYPING ANIMATION ── */
+  const phrases = [
+    'Stoic philosophy',
+    'the examined life',
+    'market dynamics',
+    'the nature of consciousness',
+    'strategic thinking',
+    'the art of journaling',
+  ];
+  let pIdx = 0, cIdx = 0, deleting = false;
+  const typingEl = document.getElementById('typing-el');
+
+  function type() {
+    const phrase = phrases[pIdx];
+    if (!deleting) {
+      typingEl.textContent = phrase.slice(0, cIdx + 1);
+      cIdx++;
+      if (cIdx === phrase.length) { deleting = true; setTimeout(type, 1800); return; }
+    } else {
+      typingEl.textContent = phrase.slice(0, cIdx - 1);
+      cIdx--;
+      if (cIdx === 0) { deleting = false; pIdx = (pIdx + 1) % phrases.length; }
+    }
+    setTimeout(type, deleting ? 55 : 90);
+  }
+  setTimeout(type, 1500);
+
+  /* ── SCROLL REVEAL ── */
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        // Trigger skill bars
+        const bar = e.target.querySelector('.skill-bar');
+        if (bar) {
+          const pct = e.target.getAttribute('data-skill');
+          setTimeout(() => bar.style.width = pct + '%', 200);
+        }
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  /* ── STAGGERED CHILDREN ── */
+  document.querySelectorAll('.skills-grid, .interests-grid, .hobbies-grid, .about-visual').forEach(grid => {
+    Array.from(grid.children).forEach((child, i) => {
+      child.style.transitionDelay = `${i * 0.08}s`;
+    });
+  });
+
+  /* ── QUOTES CAROUSEL ── */
+  let qIdx = 0;
+  const track = document.getElementById('quotes-track');
+  const dots = document.querySelectorAll('.quote-dot');
+
+  function goToQuote(i) {
+    qIdx = i;
+    track.style.transform = `translateX(-${i * 100}%)`;
+    dots.forEach((d, idx) => d.classList.toggle('active', idx === i));
+  }
+  document.getElementById('q-prev').addEventListener('click', () => goToQuote((qIdx - 1 + dots.length) % dots.length));
+  document.getElementById('q-next').addEventListener('click', () => goToQuote((qIdx + 1) % dots.length));
+  dots.forEach(d => d.addEventListener('click', () => goToQuote(+d.getAttribute('data-idx'))));
+
+  // Auto-advance
+  setInterval(() => goToQuote((qIdx + 1) % dots.length), 5000);
+
+  // Swipe on mobile
+  let touchStartX = 0;
+  document.getElementById('quotes-carousel').addEventListener('touchstart', e => touchStartX = e.touches[0].clientX, { passive: true });
+  document.getElementById('quotes-carousel').addEventListener('touchend', e => {
+    const dx = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(dx) > 40) goToQuote(dx > 0 ? (qIdx + 1) % dots.length : (qIdx - 1 + dots.length) % dots.length);
+  }, { passive: true });
+
+  /* ── CONTACT FORM ── */
+  document.getElementById('form-submit').addEventListener('click', () => {
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+    const msgEl = document.getElementById('form-msg');
+
+    if (!name || !email || !message) {
+      msgEl.style.color = '#F43F5E';
+      msgEl.textContent = 'Please fill in all fields before sending.';
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      msgEl.style.color = '#F43F5E';
+      msgEl.textContent = 'Please enter a valid email address.';
+      return;
+    }
+    msgEl.style.color = '#14B8A6';
+    msgEl.textContent = '✓ Message sent! I\'ll get back to you soon.';
+    document.getElementById('name').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('message').value = '';
+  });
+  </script>
+</body>
+</html>
